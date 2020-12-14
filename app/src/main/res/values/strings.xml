@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Praktikum10</string>
+    <string name="jadwal_tugas_bulan_ini">Jadwal Tugas Bulan Ini</string>
+    <string name="todo">TODO</string>
+</resources>
