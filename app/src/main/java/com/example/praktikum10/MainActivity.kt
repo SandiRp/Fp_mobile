@@ -40,6 +40,10 @@ class MainActivity : AppCompatActivity() {
                 ADD_NOTE_REQUEST
             )
         }
+        buttonProfil.setOnClickListener{
+            val intentMain = Intent(this, userProfil::class.java)
+            startActivity(intentMain)
+        }
         recycler_view.layoutManager = LinearLayoutManager(this)
         recycler_view.setHasFixedSize(true)
 
@@ -63,7 +67,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 noteViewModel.delete(adapter.getNoteAt(viewHolder.adapterPosition))
-                Toast.makeText(baseContext, "Catatan dihapus!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(baseContext, "Informasi Telah dihapus!", Toast.LENGTH_SHORT).show()
             }
         }
         ).attachToRecyclerView(recycler_view)
@@ -72,8 +76,10 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(baseContext, AddEditNoteActivity::class.java)
                 intent.putExtra(AddEditNoteActivity.EXTRA_ID, note.id)
                 intent.putExtra(AddEditNoteActivity.EXTRA_JUDUL, note.title)
-                intent.putExtra(AddEditNoteActivity.EXTRA_DESKRIPSI, note.description)
-                intent.putExtra(AddEditNoteActivity.EXTRA_PRIORITAS, note.priority)
+                intent.putExtra(AddEditNoteActivity.EXTRA_DESKRIPSI, note.deskripsi)
+                intent.putExtra(AddEditNoteActivity.EXTRA_ALAMAT, note.alamat)
+                intent.putExtra(AddEditNoteActivity.EXTRA_TANGGAL, note.tanggal)
+                intent.putExtra(AddEditNoteActivity.EXTRA_JAM, note.jam)
                 startActivityForResult(intent, EDIT_NOTE_REQUEST)
             }
         })
@@ -104,10 +110,12 @@ class MainActivity : AppCompatActivity() {
             val newNote = Note(
                 data!!.getStringExtra(AddEditNoteActivity.EXTRA_JUDUL),
                 data.getStringExtra(AddEditNoteActivity.EXTRA_DESKRIPSI),
-                data.getIntExtra(AddEditNoteActivity.EXTRA_PRIORITAS, 1)
+                data.getStringExtra(AddEditNoteActivity.EXTRA_ALAMAT),
+                data.getStringExtra(AddEditNoteActivity.EXTRA_TANGGAL),
+                data.getStringExtra(AddEditNoteActivity.EXTRA_JAM)
             )
             noteViewModel.insert(newNote)
-            Toast.makeText(this, "Catatan disimpan!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Informasi Telah Disimpan", Toast.LENGTH_SHORT).show()
         } else if (requestCode == EDIT_NOTE_REQUEST && resultCode == Activity.RESULT_OK) {
 
             val id = data?.getIntExtra(AddEditNoteActivity.EXTRA_ID, -1)
@@ -117,12 +125,14 @@ class MainActivity : AppCompatActivity() {
             val updateNote = Note(
                 data!!.getStringExtra(AddEditNoteActivity.EXTRA_JUDUL),
                 data.getStringExtra(AddEditNoteActivity.EXTRA_DESKRIPSI),
-                data.getIntExtra(AddEditNoteActivity.EXTRA_PRIORITAS, 1)
+                data.getStringExtra(AddEditNoteActivity.EXTRA_ALAMAT),
+                data.getStringExtra(AddEditNoteActivity.EXTRA_TANGGAL),
+                data.getStringExtra(AddEditNoteActivity.EXTRA_JAM)
             )
             updateNote.id = data.getIntExtra(AddEditNoteActivity.EXTRA_ID, -1)
             noteViewModel.update(updateNote)
         } else {
-            Toast.makeText(this, "Catatan tidak disimpan!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Informasi Tidak Tersimpan!", Toast.LENGTH_SHORT).show()
         }
     }
 }

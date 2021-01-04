@@ -10,7 +10,7 @@ class NoteRepository(application: Application) {
     private var allNotes: LiveData<List<Note>>
 
     init {
-        val database: NoteDatabase = NoteDatabase.getInstance(
+        val database: Notedb = Notedb.getInstance(
             application.applicationContext )!!
         noteDao = database.noteDao()
         allNotes = noteDao.getAllNotes()

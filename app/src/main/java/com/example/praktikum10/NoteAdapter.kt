@@ -17,8 +17,9 @@ class NoteAdapter : ListAdapter<Note, NoteAdapter.NoteHolder>(DIFF_CALLBACK) {
                 return oldItem.id == newItem.id
             }
             override fun areContentsTheSame(oldItem: Note, newItem: Note): Boolean {
-                return oldItem.title == newItem.title && oldItem.description == newItem.description &&
-                        oldItem.priority == newItem.priority
+                return oldItem.title == newItem.title && oldItem.deskripsi == newItem.deskripsi &&
+                        oldItem.alamat == newItem.alamat && oldItem.tanggal == newItem.tanggal &&
+                         oldItem.jam == newItem.jam
             }
         }
     }
@@ -30,8 +31,11 @@ class NoteAdapter : ListAdapter<Note, NoteAdapter.NoteHolder>(DIFF_CALLBACK) {
     override fun onBindViewHolder(holder: NoteHolder, position: Int) {
         val currentNote: Note = getItem(position)
         holder.textViewTitle.text = currentNote.title
-        holder.textViewPriority.text = currentNote.priority.toString()
-        holder.textViewDescription.text = currentNote.description
+        holder.textViewDescription.text = currentNote.deskripsi
+        holder.textViewAlamat.text = currentNote.alamat
+        holder.textViewTgl.text = currentNote.tanggal
+        holder.textViewJam.text = currentNote.jam
+
     }
     fun getNoteAt(position: Int): Note {
         return getItem(position)
@@ -46,8 +50,10 @@ class NoteAdapter : ListAdapter<Note, NoteAdapter.NoteHolder>(DIFF_CALLBACK) {
             }
         }
         var textViewTitle: TextView = itemView.text_view_title
-        var textViewPriority: TextView = itemView.text_view_priority
+        var textViewAlamat: TextView = itemView.text_view_alamat
         var textViewDescription: TextView = itemView.text_view_description
+        var textViewTgl : TextView = itemView.text_view_tanggal
+        var textViewJam : TextView = itemView.text_view_jam
     }
     interface OnItemClickListener {
         fun onItemClick(note: Note)
