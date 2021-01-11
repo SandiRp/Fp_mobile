@@ -11,6 +11,7 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#4DE8FF"
         android:padding="8dp">
 
         <TextView
@@ -40,8 +41,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/text_view_tanggal"
             android:layout_alignParentEnd="true"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:text="14:00"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textSize="18sp" />
 
         <TextView
@@ -69,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/text_view_description"
             android:layout_alignParentEnd="true"
-            android:background="#00B8D4"
+            android:background="#FFFFFF"
             android:text="Ambil" />
 
     </RelativeLayout>

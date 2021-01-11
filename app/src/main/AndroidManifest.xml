@@ -19,13 +19,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity"
-            android:label="@string/app_name" />
+            android:label="INFOKU" />
         <activity
             android:name=".AddEditNoteActivity"
             android:parentActivityName=".MainActivity">
         </activity>
         <activity
             android:name=".userProfil"
+            android:label="INFOKU"
             android:parentActivityName=".MainActivity">
         </activity>
     </application>
